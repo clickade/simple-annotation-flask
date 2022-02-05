@@ -10,7 +10,7 @@
 /server/__pycache__
 
 # production
-/build
+# /build
 
 # misc
 .DS_Store
