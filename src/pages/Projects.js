@@ -76,6 +76,7 @@ const Projects = ({user}) => {
 				...res.data
 			])
 			setCurProject(res.data[0])
+			loadImages(res.data[0])
 		},err=>{
 			const {code,description} = err.response.data
 			alert(`[ Error ${code} ] ${description}`)
