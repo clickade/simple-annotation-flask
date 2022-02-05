@@ -166,7 +166,7 @@ The downloaded CSV file is structure as follows:
 
 You can also download the entire projects' annotation data by clicking on the `Download CSV [ All Images ]` button the project's page.
 
-![Annotation CSV](./screencaps/download-annotation-full.JPG)
+![Annotation Full](./screencaps/download-annotation-full.JPG)
 
 # External Libraries Used
 
