@@ -1,0 +1,1 @@
+parse-dashboard --dev --appId simple-img-annotation --masterKey 23f2f258-4ce5-46ba-9e5d-2c9320b50044 --serverURL "http://localhost:3001/parse"

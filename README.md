@@ -1,70 +1,182 @@
-# Getting Started with Create React App
+# Simple Image Annotation App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple image upload and annotation app. Made with [ReactJS](https://reactjs.org/docs/create-a-new-react-app.html), [Flask](https://flask.palletsprojects.com/en/2.0.x/) and [PyMongo](https://pymongo.readthedocs.io/en/stable/).
 
-## Available Scripts
+# How To Setup This App
 
-In the project directory, you can run:
+## Required installs
 
-### `yarn start`
+1. Ensure [MongoDB Server v5.0.5+](https://www.mongodb.com/try/download/community) is installed and running on default port `27017`.
+2. Ensure [NodeJS v16+](https://nodejs.org/en/) is installed.
+3. Ensure [Python v10+](https://www.python.org/) is installed.
+4. To install all NodeJS dependencies, open a Command window on the root folder and execute the following command:
+	```
+	$ npm install
+	```
+5. To install all Python dependencies, open a Command window on the root folder and execute the following command:
+	```
+	$ cd server
+	$ pip install -r requirements.txt
+	```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Host and run app
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Start the server by double-clicking the `run-server.bat` file.
+   - Alternatively, open a Command window on the root folder and execute the following command:
+		```
+		$ cd server
+		$ python api.py
+		```
 
-### `yarn test`
+## Rebuilding the client
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+If you wish to modify the React app:
+1. Edit the files in `src`
+2. Open a Command window on the root folder and execute the following command:
+	```
+	$ npm run build
+	```
+3. Client-side source files will be compiled and a `build` folder will be created / updated with the current version of the React app
 
-### `yarn build`
+# How To Use This App
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## User registration
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+First-time visitors to the app will greeted by the registration page.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Registration Page](./screencaps/registration-page.JPG)
 
-### `yarn eject`
+Enter your desired username (alphanumeric characters only) and password.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Re-enter your password to confirm it.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Registration Complete](./screencaps/registration-page-complete.JPG)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Click on the `Register Me` button to complete the registration. If successful, you will be brought to your personal projects page.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## User login
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+First-time visitors to the app will greeted by the registration page.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Click on the `Login` button to navigate to the user login page.
 
-### Code Splitting
+![Login Page](./screencaps/login-page.JPG)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Enter your username and password.
 
-### Analyzing the Bundle Size
+![Login Complete](./screencaps/login-page-complete.JPG)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Click on the `Login` button to complete the login. If successful, you will be brought to your personal projects page.
 
-### Making a Progressive Web App
+*If your user credentials are incorrect, simply re-enter the correct credentials.*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## User logout
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+If you are logged in, the `Logout` button can be found on the top navigation panel.
 
-### Deployment
+![Logout Button](./screencaps/logout-button.JPG)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Click on the `Logout` button to logout.
 
-### `yarn build` fails to minify
+![Logout Complete](./screencaps/logout-button-complete.JPG)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## User create new project
+
+If you are logged in, the `+ Create New Project` button can be found below the `My Projects` page title.
+
+![Create New Project Button](./screencaps/create-project-button.JPG)
+
+Click on the button and a page prompt will appear. Type in your desired project title and click `OK`.
+
+![Create Project Prompt](./screencaps/create-project.JPG)
+
+A new project will be created and you will be brought to the empty project page.
+
+![Create Project Complete](./screencaps/create-project-complete.JPG)
+
+---
+
+## User select an existing project
+
+If you are logged in, the buttons for your existing project can be found below the `My Projects` page title.
+
+![Project Buttons](./screencaps/nav-project.JPG)
+
+Click on your desired project button and you will be navigated to that project's page.
+
+![Another Project Page](./screencaps/nav-project-complete.JPG)
+
+---
+
+## User upload images
+
+If you are logged in and have created at least one existing project, the `+ Upload New Images` button can be found below the `My Projects` page title.
+
+![Another Project Page](./screencaps/nav-project-complete.JPG)
+
+Click on the button and an upload window will appear. Select the images you want to upload to the project and click `Open`.
+
+![Upload Window](./screencaps/upload-window.JPG)
+
+If successful, new images will be displayed automatically. Otherwise, re-click on the project button to refresh the page.
+
+![Upload Complete](./screencaps/upload-window-complete.JPG)
+
+---
+
+## User annotate images
+
+If you are logged in, have created at least one existing project, and have uploaded at least one image, the images for the currently selected project will be displayed.
+
+![Image Display](./screencaps/upload-window-complete.JPG)
+
+Click on an image you desire to annotate. A full-sized image will pop up.
+
+![Full Image](./screencaps/annotate-image.JPG)
+
+Click and drag across a feature of the image. A dropdown menu will appear. Select the category that best represents the feature.
+
+![Annotation In-Progress](./screencaps/annotate-image-dropdown.JPG)
+
+Once complete, the feature will be labelled on the image.
+
+![Annotation Complete](./screencaps/annotate-image-complete.JPG)
+
+---
+
+## User download image annotation data
+
+Annotated images can be identified by a solid yellow border. Non-annotated images have dashed white borders.
+
+![Annotated vs Non-Annotated Images](./screencaps/download-annotation.JPG)
+
+Select an annotated image and click on the `Download CSV` button at the bottom of the full image to download the annotation coordinates.
+
+![Annotation Complete](./screencaps/annotate-image-complete.JPG)
+
+The downloaded CSV file is structure as follows:
+
+![Annotation CSV](./screencaps/download-annotation-csv.JPG)
+
+You can also download the entire projects' annotation data by clicking on the `Download CSV [ All Images ]` button the project's page.
+
+![Annotation CSV](./screencaps/download-annotation-full.JPG)
+
+# External Libraries Used
+
+The following NodeJS libraries were used to support the functions of the app:
+
+## Client-side
+- [styled-components](https://styled-components.com/)
+- [sheetjs](https://sheetjs.com/)
+- [react-router](https://reactrouter.com/)
+
+## Server-side
+- [flask](https://flask.palletsprojects.com/en/2.0.x/)
+- [pymongo](https://pymongo.readthedocs.io/en/stable/)
