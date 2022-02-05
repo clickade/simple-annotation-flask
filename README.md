@@ -21,12 +21,13 @@ A simple image upload and annotation app. Made with [ReactJS](https://reactjs.or
 
 ## Host and run app
 
-Start the server by double-clicking the `run-server.bat` file.
+1. Start the server and client hosting by double-clicking the `run-server.bat` file.
    - Alternatively, open a Command window on the root folder and execute the following command:
 		```
 		$ cd server
 		$ python api.py
 		```
+2. The app can be accessed at [http://localhost:3001](http://localhost:3001)
 
 ## Rebuilding the client
 
