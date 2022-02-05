@@ -119,6 +119,7 @@ def user_logout():
 
 	# Clear session variables
 	session.pop('uid',None)
+	session.pop('usr',None)
 	return redirect(URL, code=302)
 
 @app.route('/api/registration',methods=['POST'])
@@ -295,8 +296,6 @@ def serve_image(path):
 	ext = filename.rsplit('.',1)[1].lower()
 	mimetype = f'image/{ext}'
 
-	print('Retrieving image',filename)
-
 	image_bin = DB_MANAGER.get_image(filename)
 	if not image_bin:
 		abort(404, 'Resource not found.')
@@ -323,7 +322,6 @@ def project_upload():
 		abort(401, 'User unauthorized.')
 
 	args = request.form # Data arrives in request.form
-	print(args)
 
 	# Ensure the request has required fields
 	assert 'uid' in args
@@ -333,19 +331,26 @@ def project_upload():
 	project_id = args['pid']
 	files = request.files.getlist('images')
 	
-	image_ids = []
+	image_docs = []
 	for file in files:
-		print(file.mimetype)
-
 		if not file.filename:
 			abort(400, 'Empty filename detected.')
 
 		if file and allowed_ext(file.filename):
 			filename = secure_filename(file.filename) # Sanitize incoming filename
-			image_id = DB_MANAGER.add_image(file,filename,user_id,project_id)
-			image_ids = [*image_ids,str(image_id)]
+			image_doc = DB_MANAGER.add_image(file,filename,user_id,project_id)
 
-	return jsonify(image_ids), 201
+			output_doc = {
+				'pid': project_id,				# Project ID
+				'uid': user_id,					# User ID
+				'fnu': str(image_doc.get(FIELDS_FILENAME_UNIQUE)),			# File ID
+				'url': f'/api/image/{image_doc.get(FIELDS_FILENAME_UNIQUE)}', # Image URL
+				'coords': image_doc.get(FIELDS_FILE_COORDS)					# Image annotation ID
+			}
+
+			image_docs = [*image_docs,output_doc]
+
+	return jsonify(image_docs), 201
 
 # Run server
 if __name__ == '__main__':

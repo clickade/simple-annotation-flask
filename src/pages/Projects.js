@@ -200,16 +200,7 @@ const Projects = ({user}) => {
 				headers: {'Content-Type': 'multipart/form-data'}
 			}).then(res=>{
 				console.info('Images uploaded',res)
-				setImageArray([
-					...imageArray,
-					...[...files].map(file=>{
-						return {
-							filename: file.name,
-							image: file,
-							coords: []
-						}
-					})
-				])
+				loadImages() // Hard refresh image list
 			},err=>{
 				const {code,description} = err.response.data
 				alert(`[ Error ${code} ] ${description}`)
@@ -383,6 +374,7 @@ const Projects = ({user}) => {
 			<Divider/>
 			{
 				imageArray.map(imageDoc=>{
+					if(!imageDoc?.fnu) return null // If url does not exist, don't bother rendering this
 					return <img
 						key={imageDoc.fnu}
 						src={`./api/image/${imageDoc.fnu}`}

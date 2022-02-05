@@ -124,7 +124,7 @@ class ManagerMongo():
 		)
 
 		# Reference image details in Images collection
-		res = self.images.insert_one({
+		payload = {
 			FIELDS_FILE_ID: image_id,
 			FIELDS_FILENAME_UNIQUE: unique_filename,
 			FIELDS_FILE_MIMETYPE: image.mimetype,
@@ -132,9 +132,13 @@ class ManagerMongo():
 			FIELDS_PROJECT: ObjectId(project_id),
 			FIELDS_createdBy: ObjectId(user_id),
 			FIELDS_FILE_COORDS: []	# Annotation coordinates
-		})
+		}
+		res = self.images.insert_one(payload)
 
-		return res.inserted_id
+		return {
+			**payload,
+			'_id': res
+		}
 
 	def get_images_info(self,user_id,project_id):
 		'''
