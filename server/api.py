@@ -20,7 +20,7 @@ app.secret_key = '6aac5bb8-25ae-44e7-8fcd-8b7e46a5d29c' # uuid.uuid4()
 
 def check_session_valid():
 	'''
-		Returns error 401 if user is not logged in
+		Check if user session is still active
 	'''
 	if not (session.get('uid') and session.get('usr')):
 		return False
