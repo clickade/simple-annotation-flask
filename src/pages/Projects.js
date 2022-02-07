@@ -222,7 +222,11 @@ const Projects = ({user}) => {
 	 */
 	const handleDownloadAnnotations = () => {
 		// Get basic data
-		const imageName = imageSelected['fnu'].split('.')[1] // We remove the unique identified of the image name first
+		const splitName = imageSelected['fnu'].split('.')
+		const imageName = splitName[1] // We remove the unique identified of the image name first
+		const imageExt = splitName[2]
+		const filename = `${imageName}.${imageExt}`
+
 		const imageCoords = imageSelected['coords']
 
 		// Don't bother downloading if there are no coordinates
@@ -232,7 +236,7 @@ const Projects = ({user}) => {
 		const outputData = imageCoords.map(coord=>{
 			const {txt,xy} = coord
 			return {
-				filename: imageName,
+				filename,
 				class: txt,
 				top: xy[0][1],
 				left: xy[0][0],
@@ -257,7 +261,11 @@ const Projects = ({user}) => {
 	 const handleDownloadAnnotationsAll = () => {
 		// Get basic data
 		const outputDataAll = imageArray.reduce((temp,imageDoc)=>{
-			const imageName = imageDoc['fnu'].split('.')[1] // We remove the unique identified of the image name first
+			const splitName = imageDoc['fnu'].split('.')
+			const imageName = splitName[1] // We remove the unique identified of the image name first
+			const imageExt = splitName[2]
+			const filename = `${imageName}.${imageExt}`
+
 			const imageCoords = imageDoc['coords']
 
 			// If image does not have coords, skip to next loop
@@ -267,7 +275,7 @@ const Projects = ({user}) => {
 			const outputData = imageCoords.map(coord=>{
 				const {txt,xy} = coord
 				return {
-					filename: imageName,
+					filename,
 					class: txt,
 					top: xy[0][1],
 					left: xy[0][0],
