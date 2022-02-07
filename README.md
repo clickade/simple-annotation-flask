@@ -8,7 +8,7 @@ A simple image upload and annotation app. Made with [ReactJS](https://reactjs.or
 
 1. Ensure [MongoDB Server v5.0.5+](https://www.mongodb.com/try/download/community) is installed and running on default port `27017`.
 2. Ensure [NodeJS v16+](https://nodejs.org/en/) is installed.
-3. Ensure [Python v10+](https://www.python.org/) is installed.
+3. Ensure [Python 3.10+](https://www.python.org/) is installed.
 4. To install all NodeJS dependencies, open a Command window on the root folder and execute the following command:
 	```
 	$ npm install
